@@ -1,19 +1,3 @@
-# crystal-fucoidan
-[crystal-mecab](https://github.com/lpm11/crystal-mecab) wrapper.
-
-## Usage
-Make Projectfile like this to tell crystal about dependencies.
-
-```
-deps do
-  github "lpm11/crystal-mecab"
-  github "lpm11/crystal-fucoidan"
-end
-```
-
-Run `crystal deps` enables us to use basic functions of MeCab in crystal like this.
-
-```crystal
 require "fucoidan"
 
 # Segments sentence into words
@@ -31,7 +15,3 @@ words = f.enum_parse("すもももももももものうち")
          .select { |node| node.feature.starts_with?("名詞") }
          .map { |node| node.surface }
 puts(words.join(", ")) # => すもも, もも, もも, うち
-```
-
-## License
-[MIT](http://opensource.org/licenses/MIT)

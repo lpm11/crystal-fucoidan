@@ -1,0 +1,4 @@
+deps do
+  github "lpm11/crystal-mecab"
+  github "lpm11/crystal-fucoidan"
+end
