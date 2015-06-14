@@ -1,0 +1,3 @@
+deps do
+  github "lpm11/crystal-mecab"
+end
