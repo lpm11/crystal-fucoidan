@@ -1,4 +1,4 @@
-# crystal-fucoidan
+# crystal-fucoidan [![Build Status](https://travis-ci.org/lpm11/crystal-fucoidan.svg?branch=master)](https://travis-ci.org/lpm11/crystal-fucoidan) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](http://opensource.org/licenses/MIT)
 [crystal-mecab](https://github.com/lpm11/crystal-mecab) wrapper.
 
 ## Usage
