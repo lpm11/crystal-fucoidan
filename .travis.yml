@@ -2,16 +2,23 @@ language: c
 before_install: |
   curl http://dist.crystal-lang.org/apt/setup.sh | sudo bash
   sudo apt-get -q update
-install: |
-  sudo apt-get -y --force-yes install crystal
-cache: apt
-script:
+install:
+  - sudo apt-get -y --force-yes install crystal
   - wget -O mecab-0.996.tar.gz "https://drive.google.com/uc?export=download&id=0B4y35FiV1wh7cENtOXlicTFaRUE" && tar zxf mecab-0.996.tar.gz
   - pushd mecab-0.996 && ./configure --enable-utf8-only && make && sudo make install && popd && sudo ldconfig
   - wget -O mecab-ipadic-2.7.0-20070801.tar.gz "https://drive.google.com/uc?export=download&id=0B4y35FiV1wh7MWVlSDBCSXZMTXM" && tar zxf mecab-ipadic-2.7.0-20070801.tar.gz
   - pushd mecab-ipadic-2.7.0-20070801 && ./configure --with-charset=utf8 && make && sudo make install && popd && sudo ldconfig
+  - mecab-config --version
+  - mecab-config --dicdir
+  - mecab-config --libs
   - crystal deps
+script:
   - crystal spec | tee /dev/tty | grep "0 failures, 0 errors" -q
+cache:
+  - apt: true
+  - directories:
+    - mecab-0.996
+    - mecab-ipadic-2.7.0-20070801
 notifications:
   slack:
     secure: d+T5JKeU7ON98IrVSowSBtiYuN3KNsqEFZU3VpmP3hHGn6ntKPRyJ2HB+qMWrkUTc5JDFvDDEd6HnVgEzLnYZTDoxcb0jliMv4vS9+4GMl5wTsVMqIN09QlPmwV2v7VMW2UaWBAc9yQqn3qlddqUtOcgKkDg+nIFCJziE+ABLj2p/HESZNaGJLpYszEjKHhDYtB0qDsoOdHa5kvTo6lnogPc+P4L7VL5GwGd8Yw6+C9mODD9Tm+fy9UQR7iFxKNtyOrGg8wrpVpeDTPt4PrUGeqE832luy5wd5Zo5raLsjRGQXBpsXHMSWUaS44N3N+VxNy7E2wtn8HzfC4x1nHBAlP/JSKdP1nrvawSDcjF5sx1k19kp9eBlf0RL0oFXN1MQwHa2HhQA2n5MsC/s32dtpfVa/OL49k8lliHYf++IGBlFFlIOqdcFaBRdz28QSoTYsCQlxag7et9ACH8/Kwwe06pTonDmu/Z3hM3ih9mtyv/a5t+x+6Nx6D2alWhcYyvvIg6BsPauSZzh9xpLPWWMPVrNO0QJUlucrugOJNg7CbagKaSqs1V1JuYYLOLOJXIbKNav00cA5sdeGhu1CrNNNpjBacNfwzEW6dWXaoabg1IX+ekn0/8rUiJ8AgWQ9Zq6wkBk0S9+F3QC1jyFGMcyNA+HHa32zYUUc9BbQSdwS0=
