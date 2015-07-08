@@ -1,9 +1,5 @@
-language: c
-before_install: |
-  curl http://dist.crystal-lang.org/apt/setup.sh | sudo bash
-  sudo apt-get -q update
-install:
-  - sudo apt-get -y --force-yes install crystal
+language: crystal
+before_install:
   - wget -O mecab-0.996.tar.gz "https://drive.google.com/uc?export=download&id=0B4y35FiV1wh7cENtOXlicTFaRUE" && tar zxf mecab-0.996.tar.gz
   - pushd mecab-0.996 && ./configure --enable-utf8-only && make && sudo make install && popd && sudo ldconfig
   - wget -O mecab-ipadic-2.7.0-20070801.tar.gz "https://drive.google.com/uc?export=download&id=0B4y35FiV1wh7MWVlSDBCSXZMTXM" && tar zxf mecab-ipadic-2.7.0-20070801.tar.gz
@@ -11,9 +7,7 @@ install:
   - mecab-config --version
   - mecab-config --dicdir
   - mecab-config --libs
-  - crystal deps
-script:
-  - crystal spec | tee /dev/tty | grep "0 failures, 0 errors" -q
+script: crystal spec | tee /dev/tty | grep "0 failures, 0 errors" -q
 cache:
   - apt: true
   - directories:
