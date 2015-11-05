@@ -7,6 +7,7 @@ before_install:
   - mecab-config --version
   - mecab-config --dicdir
   - mecab-config --libs
+  - shards install
 script: crystal spec | tee /dev/tty | grep "0 failures, 0 errors" -q
 cache:
   - apt: true

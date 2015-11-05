@@ -1,0 +1,7 @@
+name: examble1
+version: 0.0.1
+
+dependencies:
+  fucoidan:
+    github: lpm11/crystal-fucoidan
+    branch: master

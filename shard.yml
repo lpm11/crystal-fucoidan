@@ -1,0 +1,9 @@
+name: crystal-fucoidan
+version: 0.1.1
+
+dependencies:
+  mecab:
+    github: lpm11/crystal-mecab
+    branch: master
+
+license: MIT
