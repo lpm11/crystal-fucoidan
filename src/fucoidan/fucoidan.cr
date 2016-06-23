@@ -21,8 +21,23 @@ module Fucoidan
     getter :wcost
     getter :cost
 
+    @id        : UInt32
+    @length    : UInt16
+    @rlength   : UInt16
+    @rcAttr    : UInt16
+    @lcAttr    : UInt16
+    @posid     : UInt16
+    @char_type : UInt8
+    @stat      : UInt8
+    @isbest    : Bool
+    @alpha     : Float32
+    @beta      : Float32
+    @prob      : Float32
+    @wcost     : Int16
+    @cost      : Int64
+
     def initialize(node_ptr : LibMeCab::MeCab_Node_T*)
-      @node_ptr = node_ptr
+      @node_ptr  = node_ptr
 
       @surface   = String.new(node_ptr.value.surface.to_slice(node_ptr.value.length.to_i32()))
       @feature   = String.new(node_ptr.value.feature)
@@ -83,7 +98,7 @@ module Fucoidan
   class NodeEnumerator
     include Enumerable(Node)
 
-    def initialize(lattice)
+    def initialize(lattice : LibMeCab::MeCab_Lattice_T*)
       @lattice = lattice
     end
 
