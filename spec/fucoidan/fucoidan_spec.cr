@@ -32,10 +32,10 @@ end
 describe Fucoidan, "#parse" do
   it "parses into string" do
     sentence = "すもももももももものうち"
-    expected = "すもも も もも も もも の うち \n"
+    expected = "すもも も もも も もも の うち"
 
     f = initialize_fucoidan("-O wakati")
-    f.parse(sentence).should eq(expected)
+    f.parse(sentence).rstrip().should eq(expected)
   end
 
   it "parses into string with features" do
@@ -48,7 +48,7 @@ describe Fucoidan, "#parse" do
 
   it "parses into node with block" do
     sentence = "すもももももももものうち"
-    expected = "すもも も もも も もも の うち \n".split(" ")
+    expected = "すもも も もも も もも の うち".split(" ")
 
     f = initialize_fucoidan("")
     a = [] of Node
@@ -64,7 +64,7 @@ describe Fucoidan, "#parse" do
 
   it "parses into node with enumerable" do
     sentence = "すもももももももものうち"
-    expected = "すもも も もも も もも の うち \n".split(" ")
+    expected = "すもも も もも も もも の うち".split(" ")
 
     f = initialize_fucoidan("")
     a = f.enum_parse(sentence).to_a()
