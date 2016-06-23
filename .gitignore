@@ -1,3 +1,4 @@
+.shards/
 .crystal/
 .deps/
 libs/
